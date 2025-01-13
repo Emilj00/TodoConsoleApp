@@ -26,7 +26,7 @@ public class TaskListView(TaskList taskList) : ViewBase
         ColoredText.RenderNewLine();
         ColoredText.RenderNewLine();
 
-        RenderingUtility.RenderFooter(["ARROWS - Moving around", "A - Add new task", "D - Delete task", "SPACE - Mark as finished (toggle)", "S - Save list", "C - Close list"]);
+        RenderingUtility.RenderFooter(["ARROWS - Moving around", "A - Add new task", "D - Delete task", "SPACE - Mark as finished (toggle)","C - Close list"]);
     }
     
     private void RenderTasks()
@@ -78,6 +78,8 @@ public class TaskListView(TaskList taskList) : ViewBase
         {
             TaskCreationView taskCreationView = new TaskCreationView(taskList.Tasks);
             taskCreationView.Start();
+            
+            taskList.Save();
         }
         else if (pressedKey == ConsoleKey.D)
         {
@@ -87,6 +89,7 @@ public class TaskListView(TaskList taskList) : ViewBase
             }
             
             taskList.Tasks.RemoveAt(selectedTaskIndex);
+            taskList.Save();
         }
         else if (pressedKey == ConsoleKey.Spacebar)
         {
@@ -97,12 +100,9 @@ public class TaskListView(TaskList taskList) : ViewBase
 
             taskList.Tasks[selectedTaskIndex].IsCompleted = !taskList.Tasks[selectedTaskIndex].IsCompleted;
         }
-        else if (pressedKey == ConsoleKey.S)
-        {
-            taskList.Save();
-        }
         else if (pressedKey == ConsoleKey.C)
         {
+            taskList.Save();
             Stop();
         }
 

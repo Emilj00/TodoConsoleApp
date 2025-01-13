@@ -95,6 +95,7 @@ public class MainMenuView : ViewBase
         else if (pressedKey == ConsoleKey.Spacebar)
         {
             TaskListView taskListView = new TaskListView(listOfTaskList[selectedListIndex]);
+            taskListView.Start();
         }
         else if (pressedKey == ConsoleKey.C)
         {
